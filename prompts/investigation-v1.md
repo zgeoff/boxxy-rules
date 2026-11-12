@@ -10,7 +10,7 @@ Investigate this item for {{repo}}: answer its questions from evidence, and reco
 
 {{acceptance}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

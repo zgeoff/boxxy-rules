@@ -18,7 +18,7 @@ Build this in {{repo}} and open a pull request. The item is below, then how I wa
 
 {{findings}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

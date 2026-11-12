@@ -10,7 +10,7 @@ Triage this item for {{repo}}: shape it so that an agent can build from it alone
 
 {{acceptance}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

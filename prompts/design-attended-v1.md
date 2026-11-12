@@ -10,7 +10,7 @@ Run a design session with me for this item in {{repo}}. Bring me the design ques
 
 {{acceptance}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

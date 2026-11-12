@@ -18,7 +18,7 @@ The item is below, then how I want the work done.
 
 {{findings}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

@@ -18,7 +18,7 @@ Move this number to its target in {{repo}} and open a pull request. The item is 
 
 {{findings}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

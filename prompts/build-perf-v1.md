@@ -18,7 +18,7 @@ Make this faster in {{repo}} and open a pull request. The item is below, then ho
 
 {{findings}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

@@ -10,7 +10,7 @@ Design this item for {{repo}}: settle its design questions from evidence, so tha
 
 {{acceptance}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 

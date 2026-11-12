@@ -18,7 +18,7 @@ Refactor this code in {{repo}} and open a pull request. The item is below, then 
 
 {{findings}}
 
-## Notes from me
+## Notes
 
 {{notes}}
 
