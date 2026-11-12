@@ -1,0 +1,9 @@
+Do the maintenance that the item names, and show that it changes nothing for the people who use the product, or for code that imports this repo's packages.
+
+1. Do the maintenance. Before you remove code that you don't understand, use the `why` skill. When it shows that the code is still needed, keep the code, and say why in the pull request.
+2. Run the repo's test command and its lint command, and fix each failure. Fix the code or the test, whichever is wrong. Never switch a check or a rule off to make it pass, unless the item says to. When a test also fails on the base branch, fix it too, and say in the pull request that it failed before your change.
+3. Find the features that your change can reach: each feature whose code you changed, and, for a dependency or config bump, each feature that uses what you bumped. When no feature uses it, such as a linter, say so in the pull request, and go to step 5.
+4. Drive each of those features twice with `bun verify`: once on the base branch, checked out in a second worktree, and once on your branch. Compare the two outputs. Ignore values that change on every run, such as timestamps.
+5. When the repo publishes a package, compare the package on the base branch and on your branch: the `exports` in its manifest, and the names and types that it exports.
+6. A difference in step 4 or 5 means that someone would see the change. When the item doesn't ask for that difference, I decide what happens. Keep your change as it is, open a draft pull request that says what differs, and close out `blocked` with the difference.
+7. Add these lines to the `## Verification` section, in the form that "The pull request" shows: one for the test command and one for each `bun verify` command, each with its result in a few words. Put the output that shows no change in an `Output:` block, and the commands in a `Rerun:` block.
