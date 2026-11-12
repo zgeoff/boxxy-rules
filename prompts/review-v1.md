@@ -1,4 +1,3 @@
-<!-- A throwaway comment for the rules check. -->
 Review the pull request of the item {{title}} against its acceptance list.
 
 Check out the pull request's head in a git worktree of your own, named after the attempt. Read the
