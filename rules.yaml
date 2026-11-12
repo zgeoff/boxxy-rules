@@ -1,7 +1,11 @@
-# The boxxy server's live rules, which the cloud-boxxy image holds at /rules: a change here is a
-# new image and a deploy. They start as the v1 example rules of @boxxy/rules: four phases, two
-# limits, five pools and the sleep times. Each recipe runs atc's `boxxy` agent, which loads the
-# boxxy hook plug-in.
+# The boxxy server's live rules. A pull request merged to main reaches the server within 2
+# minutes: a sidecar in the server's pod fetches main every 30 seconds, and the server loads
+# the new commit on its next tick. The rules check loads each pull request with the server's
+# own loader, so a pull request it refuses cannot merge. When the server still refuses a
+# commit, the rules in force stay, and `boxxy runner status` shows the refused commit and
+# each reason.
+# They start as the v1 example rules of @boxxy/rules: four phases, two limits, five pools and
+# the sleep times. Each recipe runs atc's `boxxy` agent, which loads the boxxy hook plug-in.
 version: 1
 concepts: [pool@2, defer@1, expedite@1] # pool@2 adds the filter field `designMode`
 
