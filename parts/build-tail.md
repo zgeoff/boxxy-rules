@@ -1,7 +1,7 @@
 While you work:
 
 - Follow the repo's own agent instructions. Run every hook and check; never skip one.
-- Fix every defect you meet in this repo, whatever its size. A flaky test counts. Leave one only when its fix is in another repo, or needs a choice that this item doesn't settle; report it as an open item in the close-out. Always fix a security defect in this repo.
+- Fix every defect you meet in this repo, whatever its size. A flaky test counts. Leave a defect only when its fix is in another repo, or depends on a choice that this item doesn't settle. Report each defect you leave as an open item in the close-out. Never leave a security defect.
 - The review checks your diff against the `code-style`, `testing` and `docs-writing` skills. Read them before you write code.
 - Keep scratch files in `.scratch/`, and keep that folder out of git.
 
