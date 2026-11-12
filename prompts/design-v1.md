@@ -1,18 +1,24 @@
-Design this item for {{repo}}: settle its design questions from evidence, so that the agent that builds it has no design choice left to make. I don't join this session. Commit nothing, and open no pull request. The item is below, then how I want the work done.
+Design this item for {{ repo }}: settle its design questions from evidence, so that the agent that builds it has no design choice left to make. I don't join this session. Commit nothing, and open no pull request. The item is below, then how I want the work done.
 
-# {{title}}
+# {{ title }}
 
-{{outcome}}
+{{ outcome }}
+{%- if body %}
 
-{{body}}
+{{ body }}
+{%- endif %}
+{%- if acceptance %}
 
 ## Acceptance
 
-{{acceptance}}
+{{ acceptance }}
+{%- endif %}
+{%- if notes %}
 
 ## Notes
 
-{{notes}}
+{{ notes }}
+{%- endif %}
 
 # How to do the work
 

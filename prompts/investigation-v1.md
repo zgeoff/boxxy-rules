@@ -1,18 +1,24 @@
-Investigate this item for {{repo}}: answer its questions from evidence, and recommend what I do next. Change no code, commit nothing, and open no pull request. The item is below, then how I want the work done.
+Investigate this item for {{ repo }}: answer its questions from evidence, and recommend what I do next. Change no code, commit nothing, and open no pull request. The item is below, then how I want the work done.
 
-# {{title}}
+# {{ title }}
 
-{{outcome}}
+{{ outcome }}
+{%- if body %}
 
-{{body}}
+{{ body }}
+{%- endif %}
+{%- if acceptance %}
 
 ## Acceptance
 
-{{acceptance}}
+{{ acceptance }}
+{%- endif %}
+{%- if notes %}
 
 ## Notes
 
-{{notes}}
+{{ notes }}
+{%- endif %}
 
 # How to do the work
 

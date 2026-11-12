@@ -9,12 +9,12 @@ root = pathlib.Path(__file__).resolve().parent.parent
 parts = root / "parts"
 
 OPENINGS = {
-    "bug": "Fix this bug in {{repo}} and open a pull request.",
-    "feature": "Build this in {{repo}} and open a pull request.",
-    "chore": "Do this maintenance in {{repo}} and open a pull request.",
-    "refactor": "Refactor this code in {{repo}} and open a pull request.",
-    "perf": "Make this faster in {{repo}} and open a pull request.",
-    "hillclimb": "Move this number to its target in {{repo}} and open a pull request.",
+    "bug": "Fix this bug in {{ repo }} and open a pull request.",
+    "feature": "Build this in {{ repo }} and open a pull request.",
+    "chore": "Do this maintenance in {{ repo }} and open a pull request.",
+    "refactor": "Refactor this code in {{ repo }} and open a pull request.",
+    "perf": "Make this faster in {{ repo }} and open a pull request.",
+    "hillclimb": "Move this number to its target in {{ repo }} and open a pull request.",
 }
 MARK = "%%VERIFICATION%%"
 

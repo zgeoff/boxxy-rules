@@ -1,26 +1,36 @@
 The item is below, then how I want the work done.
 
-# {{title}}
+# {{ title }}
 
-{{outcome}}
+{{ outcome }}
+{%- if body %}
 
-{{body}}
+{{ body }}
+{%- endif %}
+{%- if acceptance %}
 
 ## Acceptance
 
-{{acceptance}}
+{{ acceptance }}
+{%- endif %}
+{%- if design %}
 
 ## Design
 
-{{design}}
+{{ design }}
+{%- endif %}
+{%- if findings %}
 
 ## Findings to fix
 
-{{findings}}
+{{ findings }}
+{%- endif %}
+{%- if notes %}
 
 ## Notes
 
-{{notes}}
+{{ notes }}
+{%- endif %}
 
 # How to do the work
 

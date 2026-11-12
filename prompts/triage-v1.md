@@ -1,18 +1,24 @@
-Triage this item for {{repo}}: shape it so that an agent can build from it alone, and set its kind. Change no code, and open no pull request. The item is below, then how I want the work done.
+Triage this item for {{ repo }}: shape it so that an agent can build from it alone, and set its kind. Change no code, and open no pull request. The item is below, then how I want the work done.
 
-# {{title}}
+# {{ title }}
 
-{{outcome}}
+{{ outcome }}
+{%- if body %}
 
-{{body}}
+{{ body }}
+{%- endif %}
+{%- if acceptance %}
 
 ## Acceptance
 
-{{acceptance}}
+{{ acceptance }}
+{%- endif %}
+{%- if notes %}
 
 ## Notes
 
-{{notes}}
+{{ notes }}
+{%- endif %}
 
 # How to do the work
 

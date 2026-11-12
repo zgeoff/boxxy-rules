@@ -1,18 +1,24 @@
-Run a design session with me for this item in {{repo}}. Bring me the design questions one at a time; I make each decision. Commit nothing, and open no pull request. The item is below, then how I want the session run.
+Run a design session with me for this item in {{ repo }}. Bring me the design questions one at a time; I make each decision. Commit nothing, and open no pull request. The item is below, then how I want the session run.
 
-# {{title}}
+# {{ title }}
 
-{{outcome}}
+{{ outcome }}
+{%- if body %}
 
-{{body}}
+{{ body }}
+{%- endif %}
+{%- if acceptance %}
 
 ## Acceptance
 
-{{acceptance}}
+{{ acceptance }}
+{%- endif %}
+{%- if notes %}
 
 ## Notes
 
-{{notes}}
+{{ notes }}
+{%- endif %}
 
 # How to run the session
 
