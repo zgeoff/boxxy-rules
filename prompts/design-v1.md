@@ -16,7 +16,7 @@ Design this item for {{repo}}: settle its design questions from evidence, so tha
 
 # How to do the work
 
-1. Learn the system: the repo's docs, then the code and the history that the questions touch. Use the `how` skill for how it works, and the `why` skill for why it's built that way. Quote each rule that you rely on, word for word, with its path.
+1. Learn the system: the repo's docs, then the code and the history that the questions touch. Use the `how` skill for how it works, and the `why` skill for why it's built that way. Quote each rule that you rely on, word for word, with its path. Keep scratch files in `.scratch/`, out of git, and remove them when you finish.
 2. List the design questions: the ones the item names, and each choice that the builder would otherwise have to make. What the item or my notes already decide is fixed.
 3. Get evidence for each question. Run the code when a run can answer it. For a design that is costly to change and has more than one good answer, such as a public API or a schema, run the `bake-off` skill.
 4. Decide each question, and record the options you rejected and why. Before a decision that is hard to undo, get a review of your pick through the `second-opinion` skill.
@@ -24,7 +24,7 @@ Design this item for {{repo}}: settle its design questions from evidence, so tha
 6. Write the design to the template below.
    - For a `feature` item, write "What to build" and "Acceptance checks": the builder gets the design in full, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
    - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
-7. Check the design: each quote matches its file, each path exists, and each acceptance check fails today. Then get one review of it through the `second-opinion` skill, and fix what it finds.
+7. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill, and fix what it finds.
 
 # The design
 
@@ -74,7 +74,7 @@ Design this item for {{repo}}: settle its design questions from evidence, so tha
 - What to build: <the decisions it builds on, word for word, or "needs its own design">
 ````
 
-Leave out a section that has nothing in it. Write "the owner" for me, and invent every example.
+Leave out a section that has nothing in it. Write "the owner" for me, name no agent session or tool, and invent every example.
 
 # When you are done
 

@@ -23,7 +23,7 @@ Investigate this item for {{repo}}: answer its questions from evidence, and reco
    - `[measured]`: you ran it and saw the result.
    - `[read in the code]`: you read it in the code.
    - `[from a record]`: a log, a pull request or a doc says so.
-   - `[guess]`: none of these. Say what would settle it.
+   - `[guess]`: none of these. Use it only after a run and a search found nothing, and say what would settle it.
 5. When a question asks you to choose, recommend one option, and say what would change your pick.
 6. When the evidence shows that a question is wrong, say so, and answer the question that it should have asked.
 
@@ -63,7 +63,7 @@ Recommendation: <your pick, and what would change it>
 - Acceptance: <one check per line, each with the evidence its builder will show>
 ````
 
-Give a table only for a question that asks you to choose. List a follow-up item for each piece of work that the answers call for; I decide which to file. Write "the owner" for me, and invent every example.
+Give a table only for a question that asks you to choose. List a follow-up item for each piece of work that the answers call for; I decide which to file. Write "the owner" for me, name no agent session or tool, and invent every example.
 
 # When you are done
 

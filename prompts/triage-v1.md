@@ -21,7 +21,7 @@ The agent that designs or builds this item has none of your context and none of 
 1. Learn what the item touches: read the code, the docs and the recent pull requests. For a bug, run a reproduction when one is cheap and changes nothing, and keep its output.
 2. When a merged pull request already does the work, close out `declined` with that pull request.
 3. When the item says that it repeats another item, close out `duplicate`, and say what this item holds that the other lacks.
-4. Set the kind:
+4. Set the kind. When the item has one, change it only when it is plainly wrong:
 
    - `bug`: fixes wrong behaviour.
    - `feature`: makes something possible that wasn't.
@@ -40,13 +40,14 @@ The agent that designs or builds this item has none of your context and none of 
    - <links and facts: related items, earlier pull requests, the files involved>
    - <for a bug: the steps to reproduce, and their output>
    - <each decision of mine that a note records>
+   - <each item that this one waits on>
 
    ## Scope
 
    In: <what this item changes>
    Out: <only what the item or my notes exclude; otherwise "none stated.">
 
-   ## Permissions
+   ## Permissions for the build
 
    <what I wrote, word for word. When I wrote none, for work that ends in a pull request:>
    You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request.
@@ -57,7 +58,7 @@ The agent that designs or builds this item has none of your context and none of 
    ```
 
    For a `design` item, write `## Questions to settle` in place of `## Scope`. For an `investigation` item, write `## Questions to answer`, each with the decision it informs.
-6. Write the acceptance list. Each entry is one check, with the evidence that the builder shows in its pull request: a test, a command and its output, a screenshot or a recording. A visible change needs a screenshot or a recording. Write no entry that only a release or the running system can prove.
+6. Write the acceptance list. Each entry is one check, with the evidence that the builder shows in its pull request: a test, a command and its output, a screenshot or a recording. A visible change needs a screenshot or a recording. Write no entry that only a release or the running system can prove; when I wrote one, ask me. For a `design` or `investigation` item, an entry says what the design or the answers must hold.
 7. Check that one agent can do the item. Split it only when it holds separate outcomes, each with its own acceptance, and never for size. To split it, close out `declined` with a title, an outcome and an acceptance list for each part.
 
 # What is mine to decide

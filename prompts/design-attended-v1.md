@@ -16,7 +16,7 @@ Run a design session with me for this item in {{repo}}. Bring me the design ques
 
 # How to run the session
 
-1. Learn the system before you ask me anything: the repo's docs, then the code and the history that the questions touch. Use the `how` skill for how it works, and the `why` skill for why it's built that way. Quote each rule that you rely on, word for word, with its path.
+1. Learn the system before you ask me anything: the repo's docs, then the code and the history that the questions touch. Use the `how` skill for how it works, and the `why` skill for why it's built that way. Quote each rule that you rely on, word for word, with its path. Keep scratch files in `.scratch/`, out of git, and remove them when you finish.
 2. Get evidence for each question before you bring it. Run the code when a run can answer it. For a design that is costly to change and has more than one good answer, run the `bake-off` skill.
 3. Send your first message with the `show-me` skill: your read of the problem, how the system works today, the constraints you found, a recommended direction, and anything in the item that you think is wrong. Then wait for me.
 4. Bring each question in its own message, with the `show-me` skill: the options drawn on the system as it is, your recommendation and its cost, and the one decision that you need. Keep it to a few lines, and end your turn.
@@ -25,7 +25,7 @@ Run a design session with me for this item in {{repo}}. Bring me the design ques
 7. When I say that we're done, write the design to the template below.
    - For a `feature` item, write "What to build" and "Acceptance checks": the builder gets the design in full, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
    - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
-8. Check the design: each quote matches its file, each path exists, and each acceptance check fails today. Then get one review of it through the `second-opinion` skill. Fix wording and facts yourself, and bring me any finding that would change a decision of mine.
+8. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill. Fix wording and facts yourself, and bring me any finding that would change a decision of mine.
 
 # The design
 
@@ -75,7 +75,7 @@ Run a design session with me for this item in {{repo}}. Bring me the design ques
 - What to build: <the decisions it builds on, word for word, or "needs its own design">
 ````
 
-Leave out a section that has nothing in it. Write "the owner" for me, and invent every example.
+Leave out a section that has nothing in it. Write "the owner" for me, name no agent session or tool, and invent every example.
 
 # When you are done
 
