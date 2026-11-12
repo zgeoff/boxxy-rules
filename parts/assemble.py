@@ -1,7 +1,7 @@
-"""Build the five build recipes from the shared head and tail and each kind's playbook.
+"""Build the build recipes from the shared head and tail and each kind's playbook.
 
 boxxy has no include mechanism, so each prompt file holds the whole text. Run this after a change to a
-part, never edit the five files by hand:  python3 parts/assemble.py   (from rules-draft/)
+part, and never edit a prompts/build-*.md file by hand:  python3 parts/assemble.py
 """
 import pathlib
 import re

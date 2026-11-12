@@ -8,3 +8,6 @@ commit moves. A rules change is a pull request to this repo. When boxxy refuses 
 previous rules stay live, and the refusal shows in `boxxy runner status`.
 
 `rules.yaml` holds the policy, and `prompts/` holds one prompt per recipe.
+
+The `prompts/build-*.md` files are generated. Each one holds the shared build text and one kind's
+playbook, from `parts/`. Change a file in `parts/`, then run `python3 parts/assemble.py`.
