@@ -7,6 +7,11 @@ on:
     branches: [main]
 permissions:
   contents: read
+# A newer push to a pull request cancels the older run; a run on main tests one merged commit,
+# so it is never cancelled.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   rules-check:
     runs-on: ubuntu-latest
