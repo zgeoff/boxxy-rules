@@ -12,7 +12,7 @@ concepts: [pool@2, defer@1, expedite@1] # pool@2 adds the filter field `designMo
 pipelines:
   standard:
     - phase: triage
-      maxAttempts: 2
+      maxAttempts: two
       timeoutMinutes: 20
       on: # every outcome of the phase kind, or the load fails
         accepted: next
