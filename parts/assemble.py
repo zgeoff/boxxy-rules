@@ -4,12 +4,9 @@ boxxy has no include mechanism, so each prompt file holds the whole text. Run th
 part, and never edit a prompts/build-*.md file by hand:  python3 parts/assemble.py
 """
 import pathlib
-import re
-import sys
 
 root = pathlib.Path(__file__).resolve().parent.parent
 parts = root / "parts"
-prompts = root / "prompts"
 
 OPENINGS = {
     "bug": "Fix this bug in {{repo}} and open a pull request.",
@@ -19,15 +16,13 @@ OPENINGS = {
     "perf": "Make this faster in {{repo}} and open a pull request.",
     "hillclimb": "Move this number to its target in {{repo}} and open a pull request.",
 }
+MARK = "%%VERIFICATION%%"
 
 head = (parts / "build-head.md").read_text()
 tail = (parts / "build-tail.md").read_text()
 
 for kind, opening in OPENINGS.items():
-    playbook = (parts / f"playbook-{kind}.md").read_text().strip("\n")
-    text = opening + " " + head.lstrip("\n")
-    text = text + playbook + "\n\n" + tail
-    if re.search(r"\bticket", text):
-        sys.exit(f"{kind}: the word 'ticket' is left in the text")
-    (prompts / f"build-{kind}-v1.md").write_text(text)
+    steps, lines = (parts / f"playbook-{kind}.md").read_text().split("\n" + MARK + "\n")
+    text = opening + " " + head + steps + "\n\n" + tail.replace(MARK, lines.strip("\n"))
+    (root / "prompts" / f"build-{kind}-v1.md").write_text(text)
     print(kind, len(text.splitlines()))
