@@ -1,0 +1,8 @@
+{
+  "name": "rules-check",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@boxxy/server": "0.2.0"
+  }
+}
