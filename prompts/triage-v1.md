@@ -41,9 +41,9 @@ The agent that designs or builds this item has none of your context and none of 
 5. Rewrite the item as the `work-items` skill says, and keep every fact that the item already holds. Put the Context, Depends on, Out of scope and Permissions sections in the body, and the Acceptance lines in the acceptance list.
 6. When I wrote no permission and the work ends in a pull request, write this one: "You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request."
 7. For a `design` or `investigation` item, write each acceptance line as something that the design or the answers must hold.
-8. Split the item only when it holds separate outcomes. To split it, close out `declined` with a title, an outcome and an acceptance list for each part.
+8. Split the item only when it holds separate outcomes. To split it, close out `split` with one entry in `openItems` for each part: a title, a body that holds its outcome and its acceptance lines, and the kind `idea`, so that triage shapes each part.
 
-Where the skill says to ask the owner, close out `declined` with the question, the options and your recommendation.
+Where the skill says to ask the owner, close out `needs-owner` with the question, the options and your recommendation.
 
 # When you are done
 

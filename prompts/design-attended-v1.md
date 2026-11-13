@@ -81,4 +81,4 @@ Leave out a section that has nothing in it. Write "the owner" for me, name no ag
 
 # When you are done
 
-Close out `designed` with the whole design as markdown. For a `feature` item, send the acceptance checks in `result.set.acceptance`: they replace the item's acceptance list. Send each follow-up item in `result.openItems`, and keep it out of the design. When I tell you to drop the design, close out `blocked` and say so. Put each thing that slowed us down in `friction`.
+Close out `designed` with the whole design as markdown. For a `feature` item, send the acceptance checks in `result.set.acceptance`: they replace the item's acceptance list. Send each follow-up item in `result.openItems` with the kind `idea`, so that triage shapes it, and keep it out of the design. When I tell you to drop the design, close out `blocked` and say so. Put each thing that slowed us down in `friction`.
