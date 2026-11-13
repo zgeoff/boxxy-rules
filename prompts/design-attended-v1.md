@@ -30,7 +30,7 @@ Run a design session with me for this item in {{ repo }}. Bring me the design qu
 6. I may be away. Wait for me, and never decide for me.
 7. When I say that we're done, write the design to the template below.
    - For a `feature` item, write "What to build" and "Acceptance checks": the builder gets the design in full, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
-   - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
+   - For a `design` item, write a follow-up item for each piece of work that can land by itself, to the second template below. boxxy files each one. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
 8. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill. Fix wording and facts yourself, and bring me any finding that would change a decision of mine.
 
 # The design
@@ -68,11 +68,11 @@ Run a design session with me for this item in {{ repo }}. Bring me the design qu
 ## Acceptance checks
 
 - <a check that runs against the real system and fails today, with the evidence that shows it>
+````
 
-## Follow-up items
+A follow-up item has a title, which is its outcome in plain lowercase, and this body:
 
-### <title, as the outcome, in plain lowercase>
-
+````markdown
 - Kind: <bug, feature, improvement, chore, refactor, perf, hillclimb, design or investigation>
 - Outcome: <what is true when it is done>
 - Context: <the links and facts its builder needs>
@@ -85,4 +85,4 @@ Leave out a section that has nothing in it. Write "the owner" for me, name no ag
 
 # When you are done
 
-Close out `designed` with the whole design as markdown. When I tell you to drop the design, close out `blocked` and say so. Put each thing that slowed us down in `friction`.
+Close out `designed` with the whole design as markdown. Send each follow-up item in `result.openItems`, and keep it out of the design. When I tell you to drop the design, close out `blocked` and say so. Put each thing that slowed us down in `friction`.
