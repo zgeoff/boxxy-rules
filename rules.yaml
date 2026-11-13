@@ -22,6 +22,8 @@ pipelines:
         accepted: next
         duplicate: { hold: duplicate }
         declined: { hold: declined }
+        needs-owner: { hold: needs-owner }
+        split: { end: split }
 
   # Work that needs no design pass: bug, improvement, chore, refactor, perf, hillclimb.
   build:
