@@ -4,31 +4,29 @@
 # own loader, so a pull request it refuses cannot merge. When the server still refuses a
 # commit, the rules in force stay, and `boxxy runner status` shows the refused commit and
 # each reason.
-# They start as the v1 example rules of @boxxy/rules: four phases, two limits, five pools and
-# the sleep times. Each recipe but the review runs atc's `boxxy` agent, which loads the boxxy
-# hook plug-in. The review runs `boxxy-review`, which loads the plug-in too and alone holds the
-# read-only clone token; the server's spawn.reviewAgents lists it.
+# One kind per type of work: the kind picks the pipeline and the recipe of each phase. Each recipe
+# but the review runs atc's `boxxy` agent, which loads the boxxy hook plug-in. The review runs
+# `boxxy-review`, which loads the plug-in too and alone holds the read-only clone token; the
+# server's spawn.reviewAgents lists it.
 version: 1
-concepts: [pool@2, defer@1, expedite@1] # pool@2 adds the filter field `designMode`
+concepts: [pool@2, defer@1, expedite@1]
 
 pipelines:
-  standard:
+  # A rough idea. Triage shapes it and sets its kind; the item then starts at the first step of that
+  # kind's pipeline.
+  idea:
     - phase: triage
       maxAttempts: 2
       timeoutMinutes: 20
-      on: # every outcome of the phase kind, or the load fails
-        accepted: next
-        duplicate: { hold: duplicate } # the owner confirms with `boxxy item close`,
-        declined: { hold: declined } # or sends the item on with `boxxy item retry`
-        needs-owner: { hold: needs-owner } # the owner answers with `boxxy item edit` or `boxxy item note`, then `boxxy item retry`
-        split: { end: split } # the parts are filed as new items, and the item closes
-    - phase: design
-      maxAttempts: 2
-      timeoutMinutes: 90 # the clock of an agent-mode attempt; an attended one sleeps instead
       on:
-        designed: next
-        blocked: { hold: blocked } # the agent's question; the owner answers with `boxxy item note`
-        abandoned: again # the same phase again, counted against maxAttempts
+        accepted: next
+        duplicate: { hold: duplicate }
+        declined: { hold: declined }
+        needs-owner: { hold: needs-owner }
+        split: { end: split }
+
+  # Work that needs no design pass: bug, improvement, chore, refactor, perf, hillclimb.
+  build:
     - phase: build
       maxAttempts: 2
       timeoutMinutes: 180
@@ -36,67 +34,119 @@ pipelines:
         built: next
         blocked: { hold: blocked }
         abandoned: again
-    - phase: review # a session runs the review tool's command; the server checks and posts its result
+    - phase: review
       maxAttempts: 2
       timeoutMinutes: 45
       on:
         passed: { end: reviewed }
-        changes-requested: { to: build, max: 3, resume: true } # wakes the build's kept session
+        changes-requested: { to: build, max: 3, resume: true }
         failed: again # a failed call or a result that covers no head runs once more
 
-kinds:
-  core.idea:
-    pipeline: standard
-    recipes:
-      triage: triage-v1
-      design: design-v1
-      design/attended: design-attended-v1
-      build: build-v1
-      review: review-run
-  core.issue:
-    pipeline: standard
-    recipes:
-      triage: triage-v1
-      design: design-v1
-      design/attended: design-attended-v1
-      build: build-v1
-      review: review-run
+  # Work that needs a design first: feature.
+  design-build:
+    - phase: design
+      maxAttempts: 2
+      timeoutMinutes: 90
+      on:
+        designed: next
+        blocked: { hold: blocked }
+        abandoned: again
+    - phase: build
+      maxAttempts: 2
+      timeoutMinutes: 180
+      on:
+        built: next
+        blocked: { hold: blocked }
+        abandoned: again
+    - phase: review
+      maxAttempts: 2
+      timeoutMinutes: 45
+      on:
+        passed: { end: reviewed }
+        changes-requested: { to: build, max: 3, resume: true }
+        failed: again # a failed call or a result that covers no head runs once more
 
-skills: # one commit of the skills repo, for every recipe
+  # Work whose result is a decision or an answer, with no code: design, investigation.
+  design-only:
+    - phase: design
+      maxAttempts: 2
+      timeoutMinutes: 90
+      on:
+        designed: { end: designed }
+        blocked: { hold: blocked }
+        abandoned: again
+
+kinds:
+  idea:
+    pipeline: idea
+    recipes: { triage: triage-v1 }
+  # The two kinds of the first rules. Items filed before this file keep them, and boxxy files a
+  # builder's open item as core.issue. Triage gives each one its kind.
+  core.idea:
+    pipeline: idea
+    recipes: { triage: triage-v1 }
+  core.issue:
+    pipeline: idea
+    recipes: { triage: triage-v1 }
+  bug:
+    pipeline: build
+    recipes: { build: build-bug-v1, review: review-run }
+  improvement: # hq gave an Improvement the feature playbook
+    pipeline: build
+    recipes: { build: build-feature-v1, review: review-run }
+  chore:
+    pipeline: build
+    recipes: { build: build-chore-v1, review: review-run }
+  refactor:
+    pipeline: build
+    recipes: { build: build-refactor-v1, review: review-run }
+  perf:
+    pipeline: build
+    recipes: { build: build-perf-v1, review: review-run }
+  hillclimb: # one number moved to a target over a set number of attempts
+    pipeline: build
+    recipes: { build: build-hillclimb-v1, review: review-run }
+  feature:
+    pipeline: design-build
+    recipes:
+      design: design-v1
+      design/attended: design-attended-v1
+      build: build-feature-v1
+      review: review-run
+  design:
+    pipeline: design-only
+    recipes: { design: design-v1, design/attended: design-attended-v1 }
+  investigation:
+    pipeline: design-only
+    recipes: { design: investigation-v1, design/attended: investigation-v1 }
+
+skills:
   source: zgeoff/skills
-  ref: da9ccc1fd9c812e697294f8ad6fbc63070bc6b4b
+  ref: a9bd35cbcd797573a59911175975d2317512a6c4
 
 relationTypes: [blocks, duplicate-of, relates-to]
 
-recipes: # the pin and each recipe's skills are part of the recipe hash
+recipes:
   triage-v1:
-    agent: boxxy
-    model: claude-opus-5-5
-    effort: medium
-    prompt: prompts/triage-v1.md
-    source: subscription
-    skills: []
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/triage-v1.md, source: subscription, skills: [work-items] }
   design-v1:
-    agent: boxxy
-    model: claude-opus-5-5
-    effort: medium
-    prompt: prompts/design-v1.md
-    source: subscription
-    skills: [bake-off]
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion] }
   design-attended-v1:
-    agent: boxxy
-    model: claude-opus-5-5
-    effort: medium
-    prompt: prompts/design-attended-v1.md
-    source: subscription
-    skills: [bake-off]
-  build-v1:
-    agent: boxxy
-    model: claude-opus-5-5
-    effort: medium
-    prompt: prompts/build-v1.md
-    source: subscription
-    skills: []
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-attended-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me] }
+  investigation-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/investigation-v1.md, source: subscription, skills: [how, why] }
+  build-bug-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-bug-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+  build-feature-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-feature-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+  build-chore-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-chore-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+  build-refactor-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-refactor-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+  build-perf-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-perf-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+  build-hillclimb-v1:
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-hillclimb-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
   review-run: # the agent runs one command and sends its output; it judges nothing
     agent: boxxy-review # the atc agent whose broker profile holds the read-only clone token
     model: claude-haiku-5-5
@@ -109,7 +159,7 @@ limits:
   - { name: workers, max: 7, counts: {} }
   - { name: owner-design, max: 1, counts: { phase: design, designMode: attended } }
 
-pools: # a filter and a sort; a limit caps the attempts
+pools:
   - { name: triage, takes: { phase: triage }, order: [oldest] }
   - { name: design-with-owner, takes: { phase: design, designMode: attended }, order: [oldest] }
   - { name: design, takes: { phase: design, designMode: agent }, order: [oldest] }
@@ -117,6 +167,6 @@ pools: # a filter and a sort; a limit caps the attempts
   - { name: build, takes: { phase: build }, order: [oldest] }
 
 sleep:
-  afterIdleMinutes: 30 # a session that waits for the owner this long sleeps
-  afterQuietMinutes: 60 # an attended session with no activity this long counts as waiting
-  afterUnattendedMinutes: 240 # an attended session the owner has not attached to this long sleeps
+  afterIdleMinutes: 30
+  afterQuietMinutes: 60
+  afterUnattendedMinutes: 240
