@@ -40,7 +40,8 @@ A review may send the work back, with its findings in the Findings section.
 - Answer `not-a-defect` only when the finding is wrong about the code, or quotes a rule that doesn't apply. Quote the rule's own words to show it. A true finding is a defect, however small.
 - When a finding cites a rule, fix every other break of that rule in the diff in the same push.
 - When you have patched the same logic twice, redesign it.
-- Never accept a risk for me. Only I do that.
+- Answer `deferred`, with the reason, only when the fix is in another repo or depends on a choice that this item doesn't settle.
+- Never answer `accepted-risk`. Only I accept a risk.
 
 # When you are done
 
