@@ -5,7 +5,9 @@
 5. Log every attempt in a table: the guess, the change, the metric before and after, and kept or reverted. Read the table before each new attempt.
 6. After 3 reverts in a row, change approach.
 7. Stop when the target and the minimum attempts are both met, or when no guess left is worth its cost. Never lower the target.
+8. Keep the script's raw output of every attempt in one file, with no secret in it. Upload it the way the `pr-evidence` skill uploads an image, and record the link as `live-check` evidence, with the baseline and the final value in `--observed`.
 %%VERIFICATION%%
 - [x] Result: <the metric, the target, the baseline, the final value and the change>
 - [x] Attempts: <the log table, in a collapsed block>
+- [x] Raw output: <the link to the uploaded file>
 - [x] Next guess: <what you would try next>

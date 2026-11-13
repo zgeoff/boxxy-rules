@@ -9,6 +9,8 @@
    6. do it cheaper.
 4. After each fix, measure before and after: 5 runs each, alternating. Keep the fix only when the medians differ by more than the spread of the runs. Otherwise revert it.
 5. When the fixes run out before the goal, stop, and say so with the numbers.
+6. Keep the raw output of every run in one file, with no secret in it. Upload it the way the `pr-evidence` skill uploads an image, and record the link as `live-check` evidence, with the medians in `--observed`.
 %%VERIFICATION%%
 - [x] Measured: <the path, before, after, the change in percent, the runs and their spread>
 - [x] Fixes tried: <each one, kept or reverted, with its effect>
+- [x] Raw runs: <the link to the uploaded file>
