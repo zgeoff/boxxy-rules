@@ -74,6 +74,7 @@ Open it with `gh pr create`, from the repo's template. Show the evidence in the 
 - Add an image as the `pr-evidence` skill says, never as a commit.
 - Put a one-off script in a collapsed block in the description, never in a commit.
 - Keep my name, and the names of my agent sessions and their tools, out of commits, the pull request and repo files. Invent every example and fixture.
+- Add no attribution to a commit message, a pull request title or a pull request body: no `Co-Authored-By` trailer, and no line that names the tool or the model that wrote the change.
 - Leave the merge to me.
 
 # When findings come back
