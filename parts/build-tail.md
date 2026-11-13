@@ -49,6 +49,6 @@ A review may send the work back, with its findings in the Findings section.
 1. Review the whole diff once with `codex review --base main`, or with a fresh subagent when Codex fails. Fix what it finds, and run the tests again.
 2. Wait for the pull request's checks, and fix a red one.
 3. Stop your servers, and remove your containers, worktrees and scratch folder. Keep your branch.
-4. Record evidence for each acceptance entry, then close out `built`. Put each defect you left unfixed in `openItems`, and each thing that slowed you down in `friction`.
+4. Record evidence for each acceptance entry, then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea`, so that triage shapes it, and each thing that slowed you down in `friction`.
 
 Close out `blocked` when you need an answer from me, when an action is refused, or when the pull request can't show an acceptance entry. Push what you have first. Give the one question and your recommendation, or the exact refusal.
