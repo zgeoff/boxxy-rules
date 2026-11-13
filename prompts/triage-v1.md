@@ -38,45 +38,12 @@ The agent that designs or builds this item has none of your context and none of 
    - `hillclimb`: moves one number toward a target over a set minimum of attempts.
    - `design`: settles product scope, policy or a design. No code merges.
    - `investigation`: answers questions from evidence alone. No code merges.
-5. Write the body to this template, and keep every fact that the item already holds:
+5. Rewrite the item as the `work-items` skill says, and keep every fact that the item already holds. Put the Context, Depends on, Out of scope and Permissions sections in the body, and the Acceptance lines in the acceptance list.
+6. When I wrote no permission and the work ends in a pull request, write this one: "You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request."
+7. For a `design` or `investigation` item, write each acceptance line as something that the design or the answers must hold.
+8. Split the item only when it holds separate outcomes. To split it, close out `declined` with a title, an outcome and an acceptance list for each part.
 
-   ```markdown
-   ## Context
-
-   - <links and facts: related items, earlier pull requests, the files involved>
-   - <for a bug: the steps to reproduce, and their output>
-   - <each decision of mine that a note records>
-   - <each item that this one waits on>
-
-   ## Scope
-
-   In: <what this item changes>
-   Out: <only what the item or my notes exclude; otherwise "none stated.">
-
-   ## Permissions for the build
-
-   <what I wrote, word for word. When I wrote none, for work that ends in a pull request:>
-   You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request.
-
-   ## Notes for the agent
-
-   <optional: commands and pitfalls that you found>
-   ```
-
-   For a `design` item, write `## Questions to settle` in place of `## Scope`. For an `investigation` item, write `## Questions to answer`, each with the decision it informs.
-6. Write the acceptance list. Each entry is one check, with the evidence that the builder shows in its pull request: a test, a command and its output, a screenshot or a recording. A visible change needs a screenshot or a recording. Write no entry that only a release or the running system can prove; when I wrote one, ask me. For a `design` or `investigation` item, an entry says what the design or the answers must hold.
-7. Check that one agent can do the item. Split it only when it holds separate outcomes, each with its own acceptance, and never for size. To split it, close out `declined` with a title, an outcome and an acceptance list for each part.
-
-# What is mine to decide
-
-Tighten the scope and the acceptance list yourself. Grant no permission that I didn't write. Close out `declined`, with the question, the options and your recommendation, before you do any of these:
-
-- drop or change the outcome;
-- add behaviour that the outcome doesn't ask for;
-- loosen a rule that I set in the item, a note or a design;
-- close the item while its work is still worth doing.
-
-Ask me nothing that the item or my notes already answer.
+Where the skill says to ask the owner, close out `declined` with the question, the options and your recommendation.
 
 # When you are done
 

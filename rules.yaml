@@ -110,13 +110,13 @@ kinds:
 
 skills:
   source: zgeoff/skills
-  ref: da9ccc1fd9c812e697294f8ad6fbc63070bc6b4b
+  ref: a9bd35cbcd797573a59911175975d2317512a6c4
 
 relationTypes: [blocks, duplicate-of, relates-to]
 
 recipes:
   triage-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/triage-v1.md, source: subscription, skills: [] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/triage-v1.md, source: subscription, skills: [work-items] }
   design-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion] }
   design-attended-v1:
