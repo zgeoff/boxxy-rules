@@ -8,6 +8,7 @@
 # the sleep times. Each recipe but the review runs atc's `boxxy` agent, which loads the boxxy
 # hook plug-in. The review runs `boxxy-review`, which loads the plug-in too and alone holds the
 # read-only clone token; the server's spawn.reviewAgents lists it.
+# live check: this line shows a merge reaches the server with no deploy
 version: 1
 concepts: [pool@2, defer@1, expedite@1] # pool@2 adds the filter field `designMode`
 
