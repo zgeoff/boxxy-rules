@@ -28,7 +28,7 @@ Design this item for {{ repo }}: settle its design questions from evidence, so t
 4. Decide each question, and record the options you rejected and why. Before a decision that is hard to undo, get a review of your pick through the `second-opinion` skill.
 5. When a question needs me, such as product direction or a cost that only I can accept, decide what doesn't depend on it. Then close out `blocked` with the question, the options, your recommendation and the decisions so far.
 6. Write the design to the template below.
-   - For a `feature` item, write "What to build" and "Acceptance checks": the builder gets the design in full, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
+   - For a `feature` item, write "What to build", and write the acceptance checks: each one runs against the real system and fails today, with the evidence that its builder will show. The builder gets the design and the checks, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
    - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
 7. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill, and fix what it finds.
 
@@ -64,10 +64,6 @@ Design this item for {{ repo }}: settle its design questions from evidence, so t
 
 <the types, signatures, call sites and paths, with each rule you quoted and its path>
 
-## Acceptance checks
-
-- <a check that runs against the real system and fails today, with the evidence that shows it>
-
 ## Follow-up items
 
 ### <title, as the outcome, in plain lowercase>
@@ -84,4 +80,4 @@ Leave out a section that has nothing in it. Write "the owner" for me, name no ag
 
 # When you are done
 
-Close out `designed` with the whole design as markdown. Put each thing that slowed you down in `friction`.
+Close out `designed` with the whole design as markdown. For a `feature` item, send the acceptance checks in `result.set.acceptance`: they replace the item's acceptance list. Put each thing that slowed you down in `friction`.
