@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@boxxy/server": "0.2.4"
+    "@boxxy/server": "0.2.5"
   }
 }
