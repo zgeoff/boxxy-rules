@@ -29,7 +29,7 @@ Design this item for {{ repo }}: settle its design questions from evidence, so t
 5. When a question needs me, such as product direction or a cost that only I can accept, decide what doesn't depend on it. Then close out `blocked` with the question, the options, your recommendation and the decisions so far.
 6. Write the design to the template below.
    - For a `feature` item, write "What to build", and write the acceptance checks: each one runs against the real system and fails today, with the evidence that its builder will show. The builder gets the design and the checks, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
-   - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
+   - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. When one piece must merge before another, say so in the follow-up's "Blocks" line, so that I file it with that order and nothing is built before the work it waits on. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
 7. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill, and fix what it finds.
 
 # The design
@@ -74,6 +74,7 @@ Design this item for {{ repo }}: settle its design questions from evidence, so t
 - Scope: <In: what it changes. Out: what the owner excluded, or "none stated.">
 - Acceptance: <one check per line, each with the evidence its builder will show>
 - What to build: <the decisions it builds on, word for word, or "needs its own design">
+- Blocks: <this item, or the title of each other follow-up, that must wait until this one merges; or "nothing">
 ````
 
 Leave out a section that has nothing in it. Write "the owner" for me, name no agent session or tool, and invent every example.
