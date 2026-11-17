@@ -20,8 +20,8 @@ pipelines:
       timeoutMinutes: 20
       on:
         accepted: next
-        duplicate: { hold: duplicate }
-        declined: { hold: declined }
+        duplicate: { end: duplicate }
+        declined: { end: declined }
         needs-owner: { hold: needs-owner }
         split: { end: split }
 
@@ -130,23 +130,23 @@ recipes:
   triage-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/triage-v1.md, source: subscription, skills: [work-items] }
   design-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me] }
   design-attended-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-attended-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me] }
   investigation-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/investigation-v1.md, source: subscription, skills: [how, why] }
   build-bug-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-bug-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-bug-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   build-feature-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-feature-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-feature-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   build-chore-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-chore-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-chore-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   build-refactor-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-refactor-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-refactor-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   build-perf-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-perf-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-perf-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   build-hillclimb-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-hillclimb-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/build-hillclimb-v1.md, source: subscription, skills: [how, why, blast-radius, pr-evidence, code-style, testing, docs-writing, second-opinion, show-me, ci-design, cold-read, design-docs, skill-writing, deslop] }
   review-run: # the agent runs one command and sends its output; it judges nothing
     agent: boxxy-review # the atc agent whose broker profile holds the read-only clone token
     model: claude-haiku-5-5
