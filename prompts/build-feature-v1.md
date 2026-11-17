@@ -49,24 +49,7 @@ While you work:
 
 # The pull request
 
-Open it with `gh pr create`, from the repo's template. Show the evidence in the description:
-
-```markdown
-## Verification
-
-- [x] <an acceptance entry, in the item's words>: <the test, the command and its result, or the screenshot that shows it>
-- [x] Driven as a user: <the command, and the end state it showed>
-- [x] Tests: <the test for the new or changed code, or why it has none>
-- [x] Fixed on the way: <each other defect you fixed, with its commit and test, or "none">
-
-<details><summary>Output</summary>
-<the output that proves a line above, in 40 lines or fewer>
-</details>
-
-<details><summary>Rerun</summary>
-<the command that reproduces it>
-</details>
-```
+Open it with `gh pr create`, and fill in each section of the repo's template as its comments say.
 
 - Check each claim in the description against a test or the diff. A claim is not evidence.
 - Add an image as the `pr-evidence` skill says, never as a commit.
