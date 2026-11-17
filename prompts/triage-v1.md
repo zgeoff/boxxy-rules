@@ -15,7 +15,7 @@ Triage this item for {{ repo }}: shape it so that an agent can build from it alo
 {%- endif %}
 {%- if notes %}
 
-## Notes
+## Notes on this item
 
 {{ notes }}
 {%- endif %}
@@ -41,10 +41,11 @@ The agent that designs or builds this item has none of your context and none of 
 5. Rewrite the item as the `work-items` skill says, and keep every fact that the item already holds. Put the Context, Depends on, Out of scope and Permissions sections in the body, and the Acceptance lines in the acceptance list.
 6. When I wrote no permission and the work ends in a pull request, write this one: "You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request."
 7. For a `design` or `investigation` item, write each acceptance line as something that the design or the answers must hold.
-8. Split the item only when it holds separate outcomes. To split it, close out `split` with one entry in `openItems` for each part: a title, a body that holds its outcome and its acceptance lines, and the kind `idea`, so that triage shapes each part.
-9. When the item can't start until another item is done, link it: add `{ "type": "blocks", "source": "<that item's ID>" }` to `relations`, and boxxy builds nothing until that item closes. When it waits on a pull request, link the item that owns the pull request. Still write the Depends on section, because the link only orders the work.
+8. Write each acceptance line as a result someone can see. Never limit the files a pull request may touch, and never make "an agent finds nothing" the evidence.
+9. Split the item only when it holds separate outcomes. To split it, close out `split` with one entry in `openItems` for each part: a title, a body that holds its outcome and its acceptance lines, and the kind `idea`, so that triage shapes each part.
+10. When the item can't start until another item is done, link it: add `{ "type": "blocks", "source": "<that item's ID>" }` to `relations`, and boxxy builds nothing until that item closes. When it waits on a pull request, link the item that owns the pull request. Still write the Depends on section. The link only orders the work.
 
-Where the skill says to ask the owner, close out `needs-owner` with the question, the options and your recommendation.
+Decide technical questions yourself, and write each choice and its reason in Context. Ask me only to change the outcome, to add behaviour nobody asked for, or about spend, security, deleting data, a licence, a name or product direction: close out `needs-owner` with the question, the options and your pick. When the item needs a design or policy decision, set the kind `design`.
 
 # When you are done
 

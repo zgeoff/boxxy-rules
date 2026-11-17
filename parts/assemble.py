@@ -16,13 +16,12 @@ OPENINGS = {
     "perf": "Make this faster in {{ repo }} and open a pull request.",
     "hillclimb": "Move this number to its target in {{ repo }} and open a pull request.",
 }
-MARK = "%%VERIFICATION%%"
 
 head = (parts / "build-head.md").read_text()
 tail = (parts / "build-tail.md").read_text()
 
 for kind, opening in OPENINGS.items():
-    steps, lines = (parts / f"playbook-{kind}.md").read_text().split("\n" + MARK + "\n")
-    text = opening + " " + head + steps + "\n\n" + tail.replace(MARK, lines.strip("\n"))
+    steps = (parts / f"playbook-{kind}.md").read_text()
+    text = opening + " " + head + steps + "\n" + tail
     (root / "prompts" / f"build-{kind}-v1.md").write_text(text)
     print(kind, len(text.splitlines()))

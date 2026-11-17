@@ -27,7 +27,7 @@ The item is below, then how I want the work done.
 {%- endif %}
 {%- if notes %}
 
-## Notes
+## Notes on this item
 
 {{ notes }}
 {%- endif %}

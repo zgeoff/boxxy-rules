@@ -4,5 +4,3 @@
 4. Search the repo for the same faulty call, and fix each match that has the same defect.
 5. Add a test that fails without the fix and passes with it. Check that it fails for the right reason: take the fix out, run the test, and put the fix back.
 6. Run the reproduction again, and keep the passing output.
-%%VERIFICATION%%
-- [x] Reproduction: <what it showed before the fix, and after>
