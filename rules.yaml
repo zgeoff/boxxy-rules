@@ -130,9 +130,9 @@ recipes:
   triage-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/triage-v1.md, source: subscription, skills: [work-items] }
   design-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me, code-style, testing, ci-design] }
   design-attended-v1:
-    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-attended-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me] }
+    { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/design-attended-v1.md, source: subscription, skills: [how, why, bake-off, second-opinion, show-me, code-style, testing, ci-design] }
   investigation-v1:
     { agent: boxxy, model: claude-opus-5-5, effort: medium, prompt: prompts/investigation-v1.md, source: subscription, skills: [how, why] }
   build-bug-v1:
