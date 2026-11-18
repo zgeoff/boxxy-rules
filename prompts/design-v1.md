@@ -1,4 +1,4 @@
-Design this item for {{ repo }}: settle its design questions from evidence, so that the design settles the product, architecture and systems decisions for the agent that builds it. I don't join this session. Commit nothing, and open no pull request. The item is below, then how I want the work done.
+Design this item for {{ repo }}: settle its design questions from evidence. Leave the agent that builds it no product, architecture or systems decision to make. I don't join this session. Commit nothing, and open no pull request. The item is below, then how I want the work done.
 
 # {{ title }}
 
@@ -28,7 +28,7 @@ Design this item for {{ repo }}: settle its design questions from evidence, so t
 4. Decide each question, and record the options you rejected and why. Before a decision that is hard to undo, get a review of your pick through the `second-opinion` skill.
 5. When a question needs me, such as product direction or a cost that only I can accept, decide what doesn't depend on it. Then close out `blocked` with the question, the options, your recommendation and the decisions so far.
 6. Write the design to the template below.
-   - Make each code sketch, name and acceptance check follow the `code-style` and `testing` skills. The builder copies them, and the pull request review checks them against those skills.
+   - Follow the `code-style` and `testing` skills in each code sketch, name and acceptance check. The builder copies what you write, and the pull request review checks it against those skills.
    - For a `feature` item, write "What to build", and write the acceptance checks: each one runs against the real system and fails today, with the evidence that its builder will show. The builder gets the design and the checks, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
    - For a `design` item, write a follow-up item for each piece of work that can land by itself. I have them filed. When one piece must merge before another, say so in the follow-up's "Blocks" line, so that I file it with that order and nothing is built before the work it waits on. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
 7. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill, and fix what it finds.

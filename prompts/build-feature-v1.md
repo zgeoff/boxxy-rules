@@ -34,7 +34,7 @@ Build this in {{ repo }} and open a pull request. The item is below, then how I 
 
 # How to do the work
 
-1. When the Design section holds a design, build what it decides. Treat its product, architecture and systems decisions as the closest thing to sacred: when evidence shows one is wrong, build the parts that the fault doesn't touch, and close out `blocked` with the fault and the evidence. Everything in between is yours to fix, such as a wrong path, a name, or one field of twenty in an interface. Fix it, say what you changed and why in the pull request, and carry on.
+1. When the Design section holds a design, build what it decides. Never change its product, architecture or systems decisions yourself. When evidence shows one is wrong, build the parts that the fault doesn't touch, and close out `blocked` with the fault and the evidence. Fix any smaller fault yourself, such as a wrong path, a name, or one field of twenty in an interface. Say in the pull request what you changed and why, and carry on.
 2. Define the types before the logic. Prefer a state machine to a set of booleans, and a table to a chain of if/else. When the change crosses a module boundary, write the signatures and the calling code before any function body.
 3. Build in small steps, with a test for each. Commit a step once its tests pass.
 4. Drive the feature the way a user would, with `bun verify` when the repo has it, and keep the output. A passing unit test doesn't show that the feature works.
