@@ -29,6 +29,7 @@ Run a design session with me for this item in {{ repo }}. Bring me the design qu
 5. When I question the premise, research it again, and bring the question back.
 6. I may be away. Wait for me, and never decide for me.
 7. When I say that we're done, write the design to the template below.
+   - Make each code sketch, name and acceptance check follow the `code-style` and `testing` skills. The builder copies them, and the pull request review checks them against those skills.
    - For a `feature` item, write "What to build", and write the acceptance checks: each one runs against the real system and fails today, with the evidence that its builder will show. The builder gets the design and the checks, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
    - For a `design` item, write a follow-up item for each piece of work that can land by itself, to the second template below. boxxy files each one. Put in a follow-up only what I approved, and copy what the decisions settled word for word.
 8. Check the design: each quote matches its file, each path exists, each acceptance check fails today, and each follow-up holds every code block that its decisions settled. Then get one review of it through the `second-opinion` skill. Fix wording and facts yourself, and bring me any finding that would change a decision of mine.
