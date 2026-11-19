@@ -14,7 +14,6 @@ Open it with `gh pr create`, and fill in each section of the repo's template as 
 - Put a one-off script in a collapsed block in the description, never in a commit.
 - Keep my name, and the names of my agent sessions and their tools, out of commits, the pull request and repo files. Invent every example and fixture.
 - Add no attribution to a commit message, a pull request title or a pull request body: no `Co-Authored-By` trailer, and no line that names the tool or the model that wrote the change.
-- Leave the merge to me.
 
 # When findings come back
 
@@ -30,8 +29,7 @@ A review may send the work back, with its findings in the Findings section.
 # When you are done
 
 1. Review the whole diff once with `codex review --base main`, or with a fresh subagent when Codex fails. Fix what it finds, and run the tests again.
-2. Wait for the pull request's checks, and fix a red one. You may end your turn while you wait, but wake at least every 30 minutes: boxxy fails a session that shows no activity for 45 minutes.
-3. Stop your servers, and remove your containers, worktrees and scratch folder. Keep your branch.
-4. Record evidence for each acceptance entry, then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea` and the reason you left it, and each thing that slowed you down in `friction`. Leave out a defect that an earlier close-out of this item reported, and one that an existing item already covers: search the items first.
+2. Stop your servers, and remove your containers, worktrees and scratch folder. Keep your branch.
+3. Record evidence for each acceptance entry, then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea` and the reason you left it, and each thing that slowed you down in `friction`. Leave out a defect that an earlier close-out of this item reported, and one that an existing item already covers: search the items first.
 
 Close out `blocked` when you need an answer from me, when an action is refused, or when the pull request can't show an acceptance entry. Push what you have first. Give the one question and your recommendation, or the exact refusal.

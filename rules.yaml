@@ -38,9 +38,20 @@ pipelines:
       maxAttempts: 2
       timeoutMinutes: 45
       on:
-        passed: { end: reviewed }
+        passed: next
         changes-requested: { to: build, max: 3, resume: true }
         failed: again # a failed call or a result that covers no head runs once more
+    - phase: merge # a job in the server on `merge.forge`, with no agent session
+      maxAttempts: 2
+      timeoutMinutes: 240 # a merge still waiting on checks past it finishes `stalled`
+      on:
+        merged: { end: merged }
+        repair: { to: build, max: 3, resume: true } # a conflict or a red required check
+        stale: { to: review, max: 3 } # the head is not the head the review passed
+        closed: { hold: pull-request-closed }
+        stalled: { hold: checks-stalled }
+        refused: { hold: merge-refused }
+        blocked: { hold: merge-blocked } # no pull request, none on the forge, or no commit
 
   # Work that needs a design first: feature.
   design-build:
@@ -62,9 +73,20 @@ pipelines:
       maxAttempts: 2
       timeoutMinutes: 45
       on:
-        passed: { end: reviewed }
+        passed: next
         changes-requested: { to: build, max: 3, resume: true }
         failed: again # a failed call or a result that covers no head runs once more
+    - phase: merge # a job in the server on `merge.forge`, with no agent session
+      maxAttempts: 2
+      timeoutMinutes: 240 # a merge still waiting on checks past it finishes `stalled`
+      on:
+        merged: { end: merged }
+        repair: { to: build, max: 3, resume: true } # a conflict or a red required check
+        stale: { to: review, max: 3 } # the head is not the head the review passed
+        closed: { hold: pull-request-closed }
+        stalled: { hold: checks-stalled }
+        refused: { hold: merge-refused }
+        blocked: { hold: merge-blocked } # no pull request, none on the forge, or no commit
 
   # Work whose result is a decision or an answer, with no code: design, investigation.
   design-only:
@@ -90,22 +112,22 @@ kinds:
     recipes: { triage: triage-v1 }
   bug:
     pipeline: build
-    recipes: { build: build-bug-v1, review: review-run }
+    recipes: { build: build-bug-v1, review: review-run, merge: merge-v1 }
   improvement: # hq gave an Improvement the feature playbook
     pipeline: build
-    recipes: { build: build-feature-v1, review: review-run }
+    recipes: { build: build-feature-v1, review: review-run, merge: merge-v1 }
   chore:
     pipeline: build
-    recipes: { build: build-chore-v1, review: review-run }
+    recipes: { build: build-chore-v1, review: review-run, merge: merge-v1 }
   refactor:
     pipeline: build
-    recipes: { build: build-refactor-v1, review: review-run }
+    recipes: { build: build-refactor-v1, review: review-run, merge: merge-v1 }
   perf:
     pipeline: build
-    recipes: { build: build-perf-v1, review: review-run }
+    recipes: { build: build-perf-v1, review: review-run, merge: merge-v1 }
   hillclimb: # one number moved to a target over a set number of attempts
     pipeline: build
-    recipes: { build: build-hillclimb-v1, review: review-run }
+    recipes: { build: build-hillclimb-v1, review: review-run, merge: merge-v1 }
   feature:
     pipeline: design-build
     recipes:
@@ -113,6 +135,7 @@ kinds:
       design/attended: design-attended-v1
       build: build-feature-v1
       review: review-run
+      merge: merge-v1
   design:
     pipeline: design-only
     recipes: { design: design-v1, design/attended: design-attended-v1 }
@@ -154,9 +177,17 @@ recipes:
     prompt: prompts/review-run.md
     source: subscription
     skills: []
+  merge-v1: # a job recipe: the server merges, and no agent reads its prompt
+    { agent: boxxy, model: claude-haiku-5-5, effort: low, prompt: prompts/merge-v1.md, source: subscription, skills: [] }
+
+# Each repo's own `main` ruleset says what a merge needs: boxxy merges once the review passed at the
+# head and every check that the base branch requires is green there.
+merge:
+  method: squash
 
 limits:
-  - { name: workers, max: 7, counts: {} }
+  - { name: workers, max: 7, counts: { phase: [triage, design, build, review] } } # agent sessions
+  - { name: jobs, max: 20, counts: { phase: merge } } # a merge that waits on CI holds no session's seat
   - { name: owner-design, max: 1, counts: { phase: design, designMode: attended } }
 
 pools:
@@ -165,6 +196,7 @@ pools:
   - { name: design, takes: { phase: design, designMode: agent }, order: [oldest] }
   - { name: review, takes: { phase: review }, order: [oldest] }
   - { name: build, takes: { phase: build }, order: [oldest] }
+  - { name: merge, takes: { phase: merge }, order: [oldest] }
 
 sleep:
   afterIdleMinutes: 30
