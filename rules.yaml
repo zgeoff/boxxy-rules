@@ -7,7 +7,7 @@
 # One kind per type of work: the kind picks the pipeline and the recipe of each phase. Each recipe
 # but the review runs atc's `boxxy` agent, which loads the boxxy hook plug-in. The review runs
 # `boxxy-review`, which loads the plug-in too and alone holds the read-only clone token; the
-# server's spawn.reviewAgents lists it.
+# server's spawn.agents scopes it to the review phase, and every review recipe must name it.
 version: 1
 concepts: [pool@2, defer@1, expedite@1]
 

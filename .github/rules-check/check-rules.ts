@@ -9,7 +9,16 @@ if (read.kind === 'rejected') {
   process.exit(1);
 }
 
-const loaded = loadServerRules(read.checkout);
+// The prod server's spawn scope, as its config sets it, so the check refuses rules that run a
+// review on an agent other than the one that holds the clone token. Prod keeps its repo list
+// private, so the check passes none, and checks no agent's repo list.
+const spawn = {
+  agents: { 'boxxy-review': { phases: ['review'] } },
+  phases: { review: { requireScopedAgent: true } },
+  repos: [],
+};
+
+const loaded = loadServerRules(read.checkout, spawn);
 
 if (loaded.kind === 'rejected') {
   console.error(JSON.stringify(loaded.rejections, null, 2));
