@@ -45,7 +45,7 @@ The agent that designs or builds this item has none of your context and none of 
 9. Split the item only when it holds separate outcomes. To split it, close out `split` with one entry in `openItems` for each part: a title, a body that holds its outcome and its acceptance lines, and the kind `idea`, so that triage shapes each part.
 10. When the item can't start until another item is done, link it: add `{ "type": "blocks", "source": "<that item's ID>" }` to `relations`, and boxxy builds nothing until that item closes. When it waits on a pull request, link the item that owns the pull request. Still write the Depends on section. The link only orders the work.
 
-Decide technical questions yourself, and write each choice and its reason in Context. Ask me only to change the outcome, to add behaviour nobody asked for, or about spend, security, deleting data, a licence, a name or product direction: close out `needs-owner` with the question, the options and your pick. When the item needs a design or policy decision, set the kind `design`.
+Decide every other question yourself, and write each choice and its reason in Context. I decide what the project does, its architecture patterns, its stack, and how cautious it is. When the item leaves one of those open, set `designMode: attended` in `set`, so that I settle it with the design agent; otherwise leave the design to an agent. When the item needs a design or policy decision, set the kind `design`. Close out `needs-owner` only when the item can't be shaped at all without my answer, with the question, the options and your pick.
 
 # When you are done
 
