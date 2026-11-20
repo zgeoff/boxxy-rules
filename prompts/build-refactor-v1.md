@@ -46,7 +46,8 @@ Refactor this code in {{ repo }} and open a pull request. The item is below, the
 While you work:
 
 - Follow the repo's own agent instructions. Run every hook and check; never skip one.
-- Fix every defect you meet in this repo in this pull request, whatever its size. A flaky test counts. Don't search the repo for defects. Leave a defect only when its fix is in another repo, or needs a choice the item doesn't settle, such as a public interface, a schema, a config format or behaviour others rely on. Size, time, an acceptance line, the Out of scope section and a narrow brief are not reasons. Report each defect you leave as an open item in the close-out. Never leave a security defect.
+- Fix every defect you meet in this repo in this pull request, whatever its size. A flaky test counts. Don't search the repo for defects. Leave a defect only when its fix is in another repo, and report it as an open item in the close-out. Size, time, an acceptance line, the Out of scope section and a narrow brief are not reasons. Never leave a security defect.
+- Make every choice the work needs, including a change to a public interface, a schema, a config format or a rule in a skill. A wrong call shows me which guidance failed. When a choice sets what the project does, its architecture patterns, its stack or how cautious it is, list it with its reason under "Decisions" in the pull request's description.
 - The review checks your diff against the `code-style`, `testing` and `docs-writing` skills. Read them before you write code.
 - Keep scratch files in `.scratch/`, and keep that folder out of git.
 
@@ -68,7 +69,7 @@ A review may send the work back, with its findings in the Findings section.
 - Answer `not-a-defect` only when the finding is wrong about the code, or quotes a rule that doesn't apply. Quote the rule's own words to show it. A true finding is a defect, however small.
 - When a finding cites a rule, fix every other break of that rule in the diff in the same push.
 - When you have patched the same logic twice, redesign it.
-- Answer `deferred`, with the reason, only when the fix is in another repo or depends on a choice that this item doesn't settle.
+- Answer `deferred`, with the reason, only when the fix is in another repo.
 - Never answer `accepted-risk`. Only I accept a risk.
 
 # When you are done
@@ -77,4 +78,4 @@ A review may send the work back, with its findings in the Findings section.
 2. Stop your servers, and remove your containers, worktrees and scratch folder. Keep your branch.
 3. Record evidence for each acceptance entry, then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea` and the reason you left it, and each thing that slowed you down in `friction`. Leave out a defect that an earlier close-out of this item reported, and one that an existing item already covers: search the items first.
 
-Close out `blocked` when you need an answer from me, when an action is refused, or when the pull request can't show an acceptance entry. Push what you have first. Give the one question and your recommendation, or the exact refusal.
+Close out `blocked` when an action is refused, or when the pull request can't show an acceptance entry. Push what you have first. Give the exact refusal, or the entry and what stops the pull request from showing it.

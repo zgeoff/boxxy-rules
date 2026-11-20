@@ -26,7 +26,7 @@ Design this item for {{ repo }}: settle its design questions from evidence. Leav
 2. List the design questions: the ones the item names, and each choice that the builder would otherwise have to make. What the item or my notes already decide is fixed.
 3. Get evidence for each question. Run the code when a run can answer it. For a design that is costly to change and has more than one good answer, such as a public API or a schema, run the `bake-off` skill.
 4. Decide each question, and record the options you rejected and why. Before a decision that is hard to undo, get a review of your pick through the `second-opinion` skill.
-5. When a question needs me, such as product direction or a cost that only I can accept, decide what doesn't depend on it. Then close out `blocked` with the question, the options, your recommendation and the decisions so far.
+5. When neither the item nor my notes settles a question about what the project does, its architecture patterns, its stack or how cautious it is, decide it too, and mark it "Decided by: the agent". I review each one after delivery. A wrong call shows me which guidance failed.
 6. Write the design to the template below.
    - Follow the `code-style` and `testing` skills in each code sketch, name and acceptance check. The builder copies what you write, and the pull request review checks it against those skills.
    - For a `feature` item, write "What to build", and write the acceptance checks: each one runs against the real system and fails today, with the evidence that its builder will show. The builder gets the design and the checks, and nothing else from this session. When one pull request can't build the item, close out `blocked` with the split.
@@ -55,7 +55,7 @@ Design this item for {{ repo }}: settle its design questions from evidence. Leav
 - Chosen: <the design>
 - Rejected: <an option>, because <why>
 - Trade-off: we accept <X> in exchange for <Y>
-- Decided by: <the owner or the agent>
+- Decided by: <the item, the owner's notes, or the agent>
 
 ## Open risks
 
