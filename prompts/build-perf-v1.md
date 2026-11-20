@@ -51,7 +51,7 @@ While you work:
 
 - Follow the repo's own agent instructions. Run every hook and check; never skip one.
 - Fix every defect you meet in this repo in this pull request, whatever its size. A flaky test counts. Don't search the repo for defects. Leave a defect only when its fix is in another repo, and report it as an open item in the close-out. Size, time, an acceptance line, the Out of scope section and a narrow brief are not reasons. Never leave a security defect.
-- Make every choice the work needs yourself, a change to a public interface, a schema, a config format or a skill's rule included. A wrong call shows me which guidance failed, so make the call; don't ask. When a choice sets what the project does, its architecture patterns, its stack or how cautious it is, list it under "Decisions" in the pull request's description, with its reason.
+- Make every choice the work needs, including a change to a public interface, a schema, a config format or a rule in a skill. A wrong call shows me which guidance failed. When a choice sets what the project does, its architecture patterns, its stack or how cautious it is, list it with its reason under "Decisions" in the pull request's description.
 - The review checks your diff against the `code-style`, `testing` and `docs-writing` skills. Read them before you write code.
 - Keep scratch files in `.scratch/`, and keep that folder out of git.
 
