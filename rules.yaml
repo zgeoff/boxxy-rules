@@ -52,6 +52,8 @@ pipelines:
         stalled: { hold: checks-stalled }
         refused: { hold: merge-refused }
         blocked: { hold: merge-blocked } # no pull request, none on the forge, or no commit
+        needs-signoff: { hold: awaiting-signoff } # ready to merge, but a sign-off rule matched
+        changes-requested: { to: build, max: 3, resume: true } # the owner sent it back with findings
 
   # Work that needs a design first: feature.
   design-build:
@@ -87,6 +89,8 @@ pipelines:
         stalled: { hold: checks-stalled }
         refused: { hold: merge-refused }
         blocked: { hold: merge-blocked } # no pull request, none on the forge, or no commit
+        needs-signoff: { hold: awaiting-signoff } # ready to merge, but a sign-off rule matched
+        changes-requested: { to: build, max: 3, resume: true } # the owner sent it back with findings
 
   # Work whose result is a decision or an answer, with no code: design, investigation.
   design-only:
@@ -184,6 +188,11 @@ recipes:
 # head and every check that the base branch requires is green there.
 merge:
   method: squash
+  signoff: # changes that wait for the owner's sign-off once otherwise ready to merge
+    - name: skills
+      paths: ["**/SKILL.md", "**/skills/*/references/**"]
+    - name: readmes
+      paths: ["**/README.md"]
 
 limits:
   - { name: workers, max: 7, counts: { phase: [triage, design, build, review] } } # agent sessions
