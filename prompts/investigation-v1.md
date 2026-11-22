@@ -66,7 +66,7 @@ Recommendation: <your pick, and what would change it>
 - Outcome: <what is true when it is done>
 - Context: <the links and facts its builder needs>
 - Scope: <In: what it changes. Out: what the owner excluded, or "none stated.">
-- Acceptance: <one check per line, each with the evidence its builder will show>
+- Acceptance: <one check per line, each naming the check that proves it>
 ````
 
 Give a table only for a question that asks you to choose. List a follow-up item for each piece of work that the answers call for; I decide which to file. Write "the owner" for me, name no agent session or tool, and invent every example.

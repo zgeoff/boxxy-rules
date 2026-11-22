@@ -41,7 +41,7 @@ The agent that designs or builds this item has none of your context and none of 
 5. Rewrite the item as the `work-items` skill says, and keep every fact that the item already holds. Put the Context, Depends on, Out of scope and Permissions sections in the body, and the Acceptance lines in the acceptance list.
 6. When I wrote no permission and the work ends in a pull request, write this one: "You should create a branch, install dependencies, run the tests, edit any file in this repo that the work needs, commit, push and force-push your branch, and open a ready pull request."
 7. For a `design` or `investigation` item, write each acceptance line as something that the design or the answers must hold.
-8. Write each acceptance line as a result someone can see. Never limit the files a pull request may touch, and never make "an agent finds nothing" the evidence.
+8. Write each acceptance line as a result someone can see, and name the check that proves it, as the `work-items` skill's Acceptance section says. Never limit the files a pull request may touch, and never make "an agent finds nothing" the evidence.
 9. Split the item only when it holds separate outcomes. To split it, close out `split` with one entry in `openItems` for each part: a title, a body that holds its outcome and its acceptance lines, and the kind `idea`, so that triage shapes each part.
 10. When the item can't start until another item is done, link it: add `{ "type": "blocks", "source": "<that item's ID>" }` to `relations`, and boxxy builds nothing until that item closes. When it waits on a pull request, link the item that owns the pull request. Still write the Depends on section. The link only orders the work.
 
