@@ -71,7 +71,7 @@ Write the description from the repo's `.github/PULL_REQUEST_TEMPLATE.md`. Add no
 
 A review may send the work back, with its findings in the "Findings to fix" section.
 
-- Fix each finding in a commit of its own, push, and answer `fixed` with that commit's hash.
+- Fix each finding in its own commit, push, and answer `fixed` with that commit's hash. A push moves the head, so record your checks and verdicts again before you close out.
 - Answer `not-a-defect` only when the finding is wrong about the code, or quotes a rule that doesn't apply. Quote the rule's own words to show that it doesn't apply. A true finding is a defect, however small.
 - When a finding cites a rule, fix every other break of that rule in the diff in the same push.
 - When you have patched the same logic twice, redesign it.
@@ -84,6 +84,11 @@ A review may send the work back, with its findings in the "Findings to fix" sect
 2. When the repo has a `bun verify` setup, follow its `verify` skill: run the journey of each feature your change touches, and record each with `bun verify done`.
 3. Open the pull request, as "The pull request" above says. When the repo has a `bun verify` setup, then run `bun verify publish`.
 4. Stop your servers, and remove your containers, worktrees and scratch folder. Keep your branch.
-5. Record evidence for each acceptance entry from the check its line names. Record a CI run as `ci-run`, with its URL. Record a feature's verdict as `test`, with `bun verify <feature>` as the ref and the verdict as what you saw. Record a command and its output as `live-check` only when no check covers the line. Then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea` and the reason you left it, and each thing that slowed you down in `friction`. Leave out a defect that an earlier close-out of this item reported, and one that an existing item covers: search the items first.
+5. Record evidence for each acceptance entry from the check named on its line, once CI has finished on your last push:
+   - For a CI check, run `boxxy attempt evidence --kind check --ref '<check name>'`, such as `--ref 'pr / checks'`.
+   - For a feature's verdict, run `boxxy attempt evidence --kind verdict --ref <feature>`, such as `--ref file-item`.
+   - For a line no check covers, record the command you ran and the output you kept as `live-check`.
+
+   The server reads each check and verdict from GitHub at your pull request's head, and refuses one that hasn't passed there. Fix the problem the refusal gives, then record it again. Push nothing after you record them: a push moves the head, and the close-out then fails with `stale-evidence` until you record them again. Then close out `built`. Put each defect you left unfixed in `openItems` with the kind `idea` and the reason you left it, and each thing that slowed you down in `friction`. Leave out a defect that an earlier close-out of this item reported, and one that an existing item covers: search the items first.
 
 Close out `blocked` when an action is refused, when you can't get evidence for an acceptance entry, or when a step above tells you to. Push what you have first. Give the exact refusal, or the entry and what stops you getting its evidence.
